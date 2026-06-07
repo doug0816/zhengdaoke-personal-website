@@ -17,12 +17,15 @@ body{
 .bg{
     position:fixed;
     inset:0;
+
     background-image:url('/static/background.png');
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
-    transform:translateY(100%);
-    animation:slideUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+    clip-path: inset(100% 0 0 0);
+
+    animation: revealUp 2s ease-out forwards;
 }
 
 .content{
@@ -31,12 +34,13 @@ body{
     padding-top:100px;
 }
 
-@keyframes slideUp{
+@keyframes revealUp{
     from{
-        transform:translateY(100%);
+        clip-path: inset(100% 0 0 0);
     }
+
     to{
-        transform:translateY(0);
+        clip-path: inset(0 0 0 0);
     }
 }
 </style>
