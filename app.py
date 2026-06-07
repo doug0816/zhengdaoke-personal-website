@@ -9,7 +9,7 @@ def home():
     <body style="
         margin:0;
         min-height:100vh;
-        background-image:url('/static/background.jpg');
+        background-image:url('/static/background.png');
         background-size:cover;
         background-position:center;
         background-repeat:no-repeat;
