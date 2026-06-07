@@ -1,57 +1,59 @@
-from flask import Flask
-import os
-
-app = Flask(__name__)
-
 @app.route("/")
 def home():
     return """
-    <body style="
-        margin:0;
-        min-height:100vh;
-        background-image:url('/static/background.png');
-        background-size:cover;
-        background-position:center;
-        background-repeat:no-repeat;
-        color:white;
-        text-align:center;
-        padding-top:100px;
-        font-family:Arial;
-    ">
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+    margin:0;
+    min-height:100vh;
+    overflow:hidden;
+    color:white;
+    text-align:center;
+    font-family:Arial;
+}
 
+.bg{
+    position:fixed;
+    inset:0;
+    background-image:url('/static/background.png');
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    transform:translateY(100%);
+    animation:slideUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.content{
+    position:relative;
+    z-index:2;
+    padding-top:100px;
+}
+
+@keyframes slideUp{
+    from{
+        transform:translateY(100%);
+    }
+    to{
+        transform:translateY(0);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="content">
     <h1>鄭道可個人網站</h1>
 
     <a style="color:white;" href="/about">關於我</a><br><br>
     <a style="color:white;" href="/works">我的作品</a><br><br>
     <a style="color:white;" href="/contact">聯絡方式</a>
+</div>
 
-    </body>
-    """
-
-@app.route("/about")
-def about():
-    return """
-    <h1>關於我</h1>
-    <p>我是 Douglas。</p>
-    <a href="/">回首頁</a>
-    """
-
-@app.route("/works")
-def works():
-    return """
-    <h1>我的作品</h1>
-    <p>這裡之後可以放 Blender 作品。</p>
-    <a href="/">回首頁</a>
-    """
-
-@app.route("/contact")
-def contact():
-    return """
-    <h1>聯絡方式</h1>
-    <p>Instagram：@DOARTS</p>
-    <a href="/">回首頁</a>
-    """
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+</body>
+</html>
+"""
